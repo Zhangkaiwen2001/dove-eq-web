@@ -1,0 +1,20 @@
+{
+  "name": "dove-eq-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "DOVE EQ WEB - 鸽子耳机 自由曲线绘制者 (Vue 3 + Vite 重构版)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "start": "npm run build && python3 -m http.server 8080 --directory dist"
+  },
+  "dependencies": {
+    "vue": "^3.4.38"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.3",
+    "vite": "^5.4.6"
+  }
+}

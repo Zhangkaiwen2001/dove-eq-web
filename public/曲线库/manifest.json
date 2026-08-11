@@ -1,0 +1,24 @@
+﻿{
+    "files":  [
+                  {
+                      "name":  "lcp-10",
+                      "path":  "lcp-10.csv"
+                  },
+                  {
+                      "name":  "peek单元",
+                      "path":  "peek单元.csv"
+                  },
+                  {
+                      "name":  "que-fr",
+                      "path":  "que-fr.csv"
+                  },
+                  {
+                      "name":  "u02-5128",
+                      "path":  "u02-5128.csv"
+                  },
+                  {
+                      "name":  "U02正式版",
+                      "path":  "U02正式版.csv"
+                  }
+              ]
+}
