@@ -32,10 +32,10 @@
   --r-md: 14px;
   --r-sm: 10px;
   --r-xs: 8px;
-  /* 动效 */
+  /* 动效（指数缓动，避免回弹的浮夸感） */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
   /* 阴影 */
   --shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.25);
   --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.32);
@@ -166,12 +166,11 @@ button {
 .brand strong {
   font-size: 20px;
   font-weight: 800;
-  letter-spacing: 0.08em;
-  background: linear-gradient(92deg, #8ab4ff 0%, #b39dff 55%, #7ee0b0 120%);
+  letter-spacing: 0.12em;
+  background: linear-gradient(92deg, #b8d0ff 0%, #6f9dff 70%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 14px rgba(120, 160, 255, 0.25));
 }
 .brand-sub {
   color: var(--muted);
@@ -405,7 +404,7 @@ button {
   content: "";
 }
 .enable-toggle:hover {
-  transform: scale(1.12);
+  transform: scale(1.08);
 }
 .band-remove {
   min-height: 28px;
@@ -510,8 +509,8 @@ select:focus {
   transition: transform 130ms var(--ease-spring), box-shadow 130ms var(--ease);
 }
 .range-input::-webkit-slider-thumb:hover {
-  transform: scale(1.18);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 18px var(--accent-glow);
+  transform: scale(1.12);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 16px var(--accent-glow);
 }
 .range-input::-moz-range-track {
   height: 6px;
@@ -583,16 +582,16 @@ select:focus {
   transform: translateY(0) scale(0.98);
 }
 .btn-primary {
-  border-color: rgba(139, 92, 246, 0.75);
-  background: linear-gradient(92deg, #5b8cff 0%, #8b5cf6 100%);
+  border-color: rgba(126, 166, 255, 0.55);
+  background: linear-gradient(180deg, #6f9dff 0%, #4d7ef5 100%);
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: var(--inset-highlight), 0 10px 26px rgba(110, 90, 255, 0.35);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
+  box-shadow: var(--inset-highlight), 0 8px 22px rgba(91, 140, 255, 0.3);
 }
 .btn-primary:hover {
-  border-color: rgba(180, 150, 255, 0.9);
-  background: linear-gradient(92deg, #6f9dff 0%, #9d6fff 100%);
-  box-shadow: var(--inset-highlight), 0 12px 30px rgba(120, 100, 255, 0.45), 0 0 22px rgba(120, 100, 255, 0.25);
+  border-color: rgba(158, 190, 255, 0.75);
+  background: linear-gradient(180deg, #7ea9ff 0%, #5b8cff 100%);
+  box-shadow: var(--inset-highlight), 0 10px 26px rgba(91, 140, 255, 0.4);
 }
 .btn-danger {
   border-color: rgba(255, 107, 107, 0.45);
@@ -615,15 +614,9 @@ select:focus {
   gap: 12px;
 }
 .import-box {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  box-shadow: var(--inset-highlight);
-  border-radius: var(--r-md);
-  padding: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 14px 2px 2px;
   transition: border-color 160ms var(--ease);
-}
-.import-box:hover {
-  border-color: rgba(91, 140, 255, 0.28);
 }
 .import-head {
   display: flex;
@@ -728,15 +721,8 @@ select:focus {
 .eq-library-box {
   display: grid;
   gap: 9px;
-  padding: 11px;
-  border-radius: var(--r-md);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  box-shadow: var(--inset-highlight);
-  transition: border-color 160ms var(--ease);
-}
-.eq-library-box:hover {
-  border-color: rgba(167, 139, 250, 0.3);
+  padding: 12px 2px 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 .eq-library-head strong {
   font-size: 13px;
@@ -823,11 +809,8 @@ select:focus {
   gap: 10px;
 }
 .device-peq-card {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  box-shadow: var(--inset-highlight);
-  border-radius: var(--r-md);
-  padding: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 14px 2px 2px;
 }
 .device-peq-title {
   display: flex;
@@ -943,60 +926,6 @@ select:focus {
   color: var(--text);
   font-weight: 700;
   font-size: 13px;
-}
-
-/* ---------- 签名链接 ---------- */
-.module-signature {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
-}
-.module-signature a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
-  color: #fff;
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: var(--inset-highlight), 0 4px 12px rgba(0, 0, 0, 0.25);
-  transition: transform 140ms var(--ease-spring), filter 140ms var(--ease), box-shadow 140ms var(--ease);
-}
-.module-signature a:hover {
-  transform: translateY(-3px) scale(1.04);
-  filter: brightness(1.12);
-  box-shadow: var(--inset-highlight), 0 10px 22px rgba(0, 0, 0, 0.35);
-}
-.taobao-icon,
-.bilibili-icon,
-.douyin-icon,
-.goofish-icon {
-  font-size: 16px;
-  font-weight: 800;
-}
-.taobao-link {
-  background: linear-gradient(180deg, #ff8a00, #ff5a00);
-  border-color: rgba(255, 138, 0, 0.9);
-}
-.bilibili-link {
-  background: linear-gradient(180deg, #33b7ff, #1296db);
-  border-color: rgba(51, 183, 255, 0.9);
-}
-.douyin-link {
-  background: linear-gradient(180deg, #161823, #090b10);
-  border-color: rgba(255, 255, 255, 0.16);
-}
-.goofish-link {
-  background: #ffd400;
-  border-color: rgba(255, 212, 0, 0.96);
-  color: #2f333b;
 }
 
 /* ---------- 图例 ---------- */
