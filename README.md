@@ -30,6 +30,8 @@ brew install docker-compose
 
 > 没有 `colima` 请先 `brew install colima`。已装过 compose 插件的可跳过第二行。
 
+> 本仓库为**私有仓库**，克隆前需先 `gh auth login`（GitHub CLI 登录你的账号）。
+
 ### 启动
 
 ```bash
