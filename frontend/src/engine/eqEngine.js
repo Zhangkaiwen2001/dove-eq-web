@@ -1067,12 +1067,6 @@ export function createEqEngine() {
     const baseName = String(curveEntry?.name || state.importedFileName || "我的EQ").trim() || "我的EQ";
     return `${baseName}（）`;
   }
-  function syncEqLibrarySearchFromCurve(entry) {
-    if (!entry) return;
-    const sourceName = entry.name || getCurveDisplayName(entry.relativePath || entry.path || "", "");
-    state.eqLibrarySearch = Array.from(String(sourceName || "").trim()).slice(0, 3).join("");
-    refreshEqLibraryOptions(state.eqLibrarySearch);
-  }
   function tryImportSingleCurveSelection() {
     if (state.curveLibraryFilteredEntries.length !== 1) return;
     const only = state.curveLibraryFilteredEntries[0];
@@ -1093,7 +1087,6 @@ export function createEqEngine() {
       setImportStatus("当前没有可导入的曲线。", "error");
       return;
     }
-    syncEqLibrarySearchFromCurve(entry);
     try {
       // 每次导入都重新读取磁盘上的最新内容（cache-buster 防止浏览器缓存），
       // 优先使用后端 API 路径，Docker / nginx 化后静态目录 `/曲线库/...` 不再可用。
