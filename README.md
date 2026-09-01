@@ -27,7 +27,8 @@
 brew install colima docker-compose docker-buildx
 ```
 
-> 本仓库为**私有仓库**，克隆前需先 `gh auth login`（GitHub CLI 登录你的账号）。
+> 本仓库已设为**公开（public）**，克隆无需登录：
+> `git clone https://github.com/Zhangkaiwen2001/dove-eq-web.git`
 
 ### 启动
 
@@ -121,7 +122,6 @@ eq-vue/
 │  ├─ curves/                 # 频响曲线 CSV + manifest.json
 │  └─ presets/                # EQ 预设 JSON
 ├─ scripts/migrate_library.py # 一次性数据迁移（含中文乱码还原）
-├─ legacy/                    # Windows 更新脚本，Linux 下不可用，仅存档
 └─ docs/plans/                # 设计文档
 ```
 
