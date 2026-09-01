@@ -48,6 +48,7 @@ function toEntry(dirLabel, fileName, displayName, text) {
   return {
     name: displayName,
     path: `${dirLabel}/${fileName}`,
+    apiPath: `/api/${dirLabel}/content?path=${encodeURIComponent(`${dirLabel}/${fileName}`)}`,
     text: stripBom(text)
   };
 }

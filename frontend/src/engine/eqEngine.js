@@ -856,7 +856,8 @@ export function createEqEngine() {
     const text = typeof rawText === "string" ? rawText : rawText && typeof rawText.value === "string" ? rawText.value : "";
     return {
       name,
-      path: normalizedPath,
+      path: item && typeof item === "object" && item.apiPath ? item.apiPath : normalizedPath,
+      legacyPath: normalizedPath,
       relativePath,
       text,
       fileHandle: item && typeof item === "object" ? item.fileHandle || null : null,
@@ -882,7 +883,8 @@ export function createEqEngine() {
     const text = typeof rawText === "string" ? rawText : rawText && typeof rawText.value === "string" ? rawText.value : "";
     return {
       name,
-      path: normalizedPath,
+      path: item && typeof item === "object" && item.apiPath ? item.apiPath : normalizedPath,
+      legacyPath: normalizedPath,
       relativePath,
       text,
       searchText: [name, relativePath, ...tags].join(" ").toLowerCase()
@@ -1033,7 +1035,9 @@ export function createEqEngine() {
       state.selectedCurveLibraryPath = "";
       return;
     }
-    const selectedPath = filtered.some((e) => e.path === previous) ? previous : "";
+    // 默认选中第一条可导入曲线，保证“导入频响曲线”按钮有明确的导入目标，
+    // 避免出现 selectedPath 为空时静默回退到第一条却与下拉框显示不一致的歧义。
+    const selectedPath = filtered.some((e) => e.path === previous) ? previous : filtered[0].path;
     state.selectedCurveLibraryPath = selectedPath;
   }
   function refreshEqLibraryOptions(searchTerm) {
@@ -1091,13 +1095,19 @@ export function createEqEngine() {
     }
     syncEqLibrarySearchFromCurve(entry);
     try {
-      const text = entry.text
-        ? entry.text
-        : await (async () => {
-            const response = await fetch(`${entry.path}?t=${Date.now()}`, { cache: "no-store" });
-            if (!response.ok) throw new Error(`读取失败：${response.status}`);
-            return response.text();
-          })();
+      // 每次导入都重新读取磁盘上的最新内容（cache-buster 防止浏览器缓存），
+      // 优先使用后端 API 路径，Docker / nginx 化后静态目录 `/曲线库/...` 不再可用。
+      const text = await (async () => {
+        if (entry.fileHandle && typeof entry.fileHandle.getFile === "function") {
+          return (await entry.fileHandle.getFile()).text();
+        }
+        const url = entry.path.includes("?")
+          ? `${entry.path}&t=${Date.now()}`
+          : `${entry.path}?t=${Date.now()}`;
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) throw new Error(`读取失败：${response.status}`);
+        return response.text();
+      })();
       importCurveFromText(text, entry.name);
       drawPlot();
     } catch (error) {
@@ -1111,16 +1121,18 @@ export function createEqEngine() {
       return;
     }
     try {
-      const text = entry.text
-        ? entry.text
-        : await (async () => {
-            if (entry.fileHandle && typeof entry.fileHandle.getFile === "function") {
-              return (await entry.fileHandle.getFile()).text();
-            }
-            const response = await fetch(`${entry.path}?t=${Date.now()}`, { cache: "no-store" });
-            if (!response.ok) throw new Error(`读取失败：${response.status}`);
-            return response.text();
-          })();
+      // 同样走后端 API 获取最新内容，避免 Docker / nginx 下静态 `/eq库/...` 404。
+      const text = await (async () => {
+        if (entry.fileHandle && typeof entry.fileHandle.getFile === "function") {
+          return (await entry.fileHandle.getFile()).text();
+        }
+        const url = entry.path.includes("?")
+          ? `${entry.path}&t=${Date.now()}`
+          : `${entry.path}?t=${Date.now()}`;
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) throw new Error(`读取失败：${response.status}`);
+        return response.text();
+      })();
       const payload = parseEqPresetText(text, entry.name);
       applyEqPresetPayload(payload, entry.name);
     } catch (error) {

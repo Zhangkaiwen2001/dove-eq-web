@@ -71,7 +71,6 @@ function onRefChange() {
             <option v-if="!state.curveLibraryFilteredEntries.length" value="" disabled selected>
               {{ curveSearch ? "没有匹配的曲线" : "曲线库为空" }}
             </option>
-            <option v-else value="" disabled :selected="!state.selectedCurveLibraryPath">请选择要导入的曲线</option>
             <option
               v-for="entry in state.curveLibraryFilteredEntries"
               :key="entry.path"

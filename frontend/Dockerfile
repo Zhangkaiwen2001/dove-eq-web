@@ -3,6 +3,7 @@ FROM node:20-alpine AS build
 WORKDIR /app
 
 COPY package.json package-lock.json ./
+RUN npm config set registry https://registry.npmmirror.com
 RUN npm ci
 
 COPY index.html vite.config.js ./
