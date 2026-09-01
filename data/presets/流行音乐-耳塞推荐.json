@@ -1,8 +1,8 @@
 {
   "version": 1,
   "name": "流行音乐-耳塞推荐",
-  "savedAt": "2026-09-01T07:23:00.000Z",
-  "preamp": -3,
+  "savedAt": "2026-09-01T07:49:00.000Z",
+  "preamp": -4,
   "filters": [
     {
       "enabled": true,
@@ -10,7 +10,7 @@
       "type": "PK",
       "freq": 50,
       "q": 1.0,
-      "gain": 1.5
+      "gain": 1
     },
     {
       "enabled": true,
@@ -18,15 +18,7 @@
       "type": "PK",
       "freq": 80,
       "q": 1.2,
-      "gain": 2.5
-    },
-    {
-      "enabled": true,
-      "showTrace": false,
-      "type": "PK",
-      "freq": 200,
-      "q": 1.0,
-      "gain": 0
+      "gain": 1.5
     },
     {
       "enabled": true,
@@ -42,7 +34,7 @@
       "type": "PK",
       "freq": 1000,
       "q": 1.0,
-      "gain": 0
+      "gain": -1.5
     },
     {
       "enabled": true,
@@ -56,17 +48,25 @@
       "enabled": true,
       "showTrace": false,
       "type": "PK",
-      "freq": 8000,
-      "q": 1.0,
-      "gain": 1
+      "freq": 6000,
+      "q": 0.9,
+      "gain": 4
     },
     {
       "enabled": true,
       "showTrace": false,
       "type": "PK",
-      "freq": 12000,
-      "q": 1.0,
-      "gain": 0.5
+      "freq": 11000,
+      "q": 1.5,
+      "gain": 4
+    },
+    {
+      "enabled": true,
+      "showTrace": false,
+      "type": "PK",
+      "freq": 16000,
+      "q": 0.7,
+      "gain": -3
     }
   ]
 }
