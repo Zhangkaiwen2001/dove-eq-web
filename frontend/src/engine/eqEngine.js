@@ -1127,12 +1127,32 @@ export function createEqEngine() {
       setEqLibraryStatus(`载入失败：${error.message}`, "error");
     }
   }
+  async function fetchApiList(kind) {
+    const response = await fetch(`/api/${kind}`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`api ${response.status}`);
+    const payload = await response.json();
+    return Array.isArray(payload) ? payload : [];
+  }
+  async function loadCurveLibraryFromApi() {
+    const list = await fetchApiList("curves");
+    return dedupeCurveLibraryEntries(list.map(toCurveLibraryEntry).filter(Boolean));
+  }
+  async function loadEqLibraryFromApi() {
+    const list = await fetchApiList("presets");
+    return dedupeEqLibraryEntries(list.map(toEqLibraryEntry).filter(Boolean));
+  }
+
   async function loadCurveLibrary(forceRefresh = false) {
     setCurveLibraryStatus("正在读取曲线库...", "");
     let entries = [];
     const errors = [];
     try {
-      entries = await loadCurveLibraryEmbeddedData(forceRefresh);
+      entries = await loadCurveLibraryFromApi();
+    } catch (e) {
+      errors.push(`api: ${e.message}`);
+    }
+    try {
+      if (!entries.length) entries = await loadCurveLibraryEmbeddedData(forceRefresh);
     } catch (e) {
       errors.push(`embedded: ${e.message}`);
     }
@@ -1165,6 +1185,11 @@ export function createEqEngine() {
       if (state.eqLibraryDirectoryHandle) entries = await loadEqLibraryFromDirectoryHandle();
     } catch (e) {
       errors.push(`handle: ${e.message}`);
+    }
+    try {
+      if (!entries.length) entries = await loadEqLibraryFromApi();
+    } catch (e) {
+      errors.push(`api: ${e.message}`);
     }
     try {
       if (!entries.length) entries = await loadEqLibraryEmbeddedData(forceRefresh);

@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "name": "我的EQ",
+  "savedAt": "2026-03-17T21:51:31.319Z",
+  "preamp": 0,
+  "filters": [
+    {
+      "enabled": true,
+      "showTrace": false,
+      "type": "PK",
+      "freq": 50,
+      "q": 0.8,
+      "gain": 0
+    },
+    {
+      "enabled": true,
+      "showTrace": false,
+      "type": "PK",
+      "freq": 200,
+      "q": 0.8,
+      "gain": 0
+    },
+    {
+      "enabled": true,
+      "showTrace": false,
+      "type": "PK",
+      "freq": 500,
+      "q": 0.8,
+      "gain": 0
+    },
+    {
+      "enabled": true,
+      "showTrace": false,
+      "type": "PK",
+      "freq": 1000,
+      "q": 0.8,
+      "gain": 0
+    },
+    {
+      "enabled": true,
+      "showTrace": false,
+      "type": "PK",
+      "freq": 2500,
+      "q": 0.8,
+      "gain": 0
+    },
+    {
+      "enabled": true,
+      "showTrace": false,
+      "type": "PK",
+      "freq": 5000,
+      "q": 0.8,
+      "gain": 0
+    },
+    {
+      "enabled": true,
+      "showTrace": false,
+      "type": "PK",
+      "freq": 10000,
+      "q": 0.8,
+      "gain": 0
+    },
+    {
+      "enabled": true,
+      "showTrace": false,
+      "type": "PK",
+      "freq": 1000,
+      "q": 1,
+      "gain": 3
+    }
+  ]
+}
