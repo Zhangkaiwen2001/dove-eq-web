@@ -2,7 +2,7 @@
   "version": 1,
   "name": "流行音乐-耳塞推荐",
   "savedAt": "2026-09-01T07:52:00.000Z",
-  "preamp": -6,
+  "preamp": -6.4,
   "filters": [
     {
       "enabled": true,
