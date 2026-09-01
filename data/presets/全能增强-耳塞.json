@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "name": "流行音乐-耳塞推荐",
-  "savedAt": "2026-09-01T07:52:00.000Z",
-  "preamp": -6.4,
+  "name": "全能增强-耳塞",
+  "savedAt": "2026-09-01T08:03:00.000Z",
+  "preamp": -5.2,
   "filters": [
     {
       "enabled": true,
@@ -18,7 +18,7 @@
       "type": "PK",
       "freq": 80,
       "q": 1.2,
-      "gain": 2
+      "gain": 1.5
     },
     {
       "enabled": true,
@@ -42,7 +42,7 @@
       "type": "PK",
       "freq": 3500,
       "q": 1.8,
-      "gain": 4
+      "gain": 3
     },
     {
       "enabled": true,
@@ -50,7 +50,7 @@
       "type": "PK",
       "freq": 6000,
       "q": 0.9,
-      "gain": 5
+      "gain": 4
     },
     {
       "enabled": true,
@@ -58,7 +58,7 @@
       "type": "PK",
       "freq": 11000,
       "q": 2.0,
-      "gain": 7
+      "gain": 6
     },
     {
       "enabled": true,
