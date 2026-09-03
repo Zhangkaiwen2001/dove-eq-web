@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "DOVE EQ WEB · 前端内部架构",
+    "subtitle": "App.vue + eqEngine 引擎 + 13 组件 (Vue 3 / Vite)",
+    "output": "eq-frontend.html"
+  },
+  "components": [
+    { "id": "app", "type": "frontend", "label": "App.vue", "sublabel": "根组件 · provide(engine)", "pos": [40, 210], "size": [150, 60] },
+    { "id": "engine", "type": "backend", "label": "eqEngine.js", "sublabel": "createEqEngine · reactive", "pos": [280, 210], "size": [160, 60] },
+    { "id": "vite", "type": "cloud", "label": "Vite 构建", "sublabel": "→ dist/ → nginx", "pos": [280, 330], "size": [160, 56] },
+    { "id": "math", "type": "frontend", "label": "数学工具", "sublabel": "频率/对数/滑块映射", "pos": [540, 70], "size": [150, 56] },
+    { "id": "curvelib", "type": "database", "label": "曲线库", "sublabel": "导入/对齐/渲染", "pos": [540, 160], "size": [150, 56] },
+    { "id": "presetlib", "type": "database", "label": "EQ 预设库", "sublabel": "保存/读取 JSON", "pos": [540, 250], "size": [150, 56] },
+    { "id": "canvas", "type": "frontend", "label": "画布绘制", "sublabel": "PlotCanvas + 拖拽", "pos": [540, 340], "size": [150, 56] },
+    { "id": "device", "type": "external", "label": "设备 PEQ", "sublabel": "WebHID/WebSerial", "pos": [540, 430], "size": [150, 56] },
+    { "id": "vendor", "type": "external", "label": "vendor 脚本", "sublabel": "public/vendor/devicepeq", "pos": [540, 520], "size": [150, 56] },
+    { "id": "layout", "type": "frontend", "label": "布局组件", "sublabel": "TopBar/SidePanel/FilterBoard", "pos": [830, 70], "size": [160, 56] },
+    { "id": "control", "type": "frontend", "label": "控制组件", "sublabel": "Slider/FilterColumn/Gain", "pos": [830, 160], "size": [160, 56] },
+    { "id": "library", "type": "frontend", "label": "库组件", "sublabel": "ImportBox/EqLibrary/Legend", "pos": [830, 250], "size": [160, 56] },
+    { "id": "devicepanel", "type": "external", "label": "DevicePeqPanel", "sublabel": "直连 UI", "pos": [830, 430], "size": [160, 56] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "引擎能力模块", "wraps": ["math", "curvelib", "presetlib", "canvas", "device"] },
+    { "kind": "region", "label": "UI 组件层 (13)", "wraps": ["layout", "control", "library", "devicepanel"] }
+  ],
+  "connections": [
+    { "from": "app", "to": "engine", "label": "provide", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "from": "vite", "to": "engine", "label": "打包", "variant": "dashed", "fromSide": "top", "toSide": "bottom" },
+    { "from": "engine", "to": "math", "variant": "default", "fromSide": "right", "toSide": "left" },
+    { "from": "engine", "to": "curvelib", "variant": "default", "fromSide": "right", "toSide": "left" },
+    { "from": "engine", "to": "presetlib", "variant": "default", "fromSide": "right", "toSide": "left" },
+    { "from": "engine", "to": "canvas", "variant": "default", "fromSide": "right", "toSide": "left" },
+    { "from": "engine", "to": "device", "variant": "security", "fromSide": "right", "toSide": "left" },
+    { "from": "device", "to": "vendor", "variant": "dashed", "fromSide": "bottom", "toSide": "top" },
+    { "from": "devicepanel", "to": "device", "label": "inject", "variant": "default", "fromSide": "left", "toSide": "right" },
+    { "from": "layout", "to": "control", "variant": "default", "fromSide": "bottom", "toSide": "top" },
+    { "from": "control", "to": "library", "variant": "default", "fromSide": "bottom", "toSide": "top" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "依赖注入", "items": ["App.vue createEqEngine() 后 provide('engine')", "所有组件 inject 共享同一 reactive 状态"] },
+    { "dot": "emerald", "title": "引擎内核", "items": ["数学工具/曲线库/EQ预设/画布绘制/设备PEQ 内聚于 eqEngine.js", "原版原生逻辑忠实移植，draw+drag+device 全部保留"] },
+    { "dot": "rose", "title": "设备直连", "items": ["DevicePeqPanel 经 inject 调用引擎设备能力", "底层调用 public/vendor/devicepeq 的 WebHID/WebSerial 脚本"] }
+  ]
+}

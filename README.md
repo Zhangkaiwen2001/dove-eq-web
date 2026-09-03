@@ -15,6 +15,8 @@
 - **backend**：只读 API，扫描 `data/` 目录提供曲线库与 EQ 预设
 - **data/**：以只读卷挂载进后端。**加曲线只需丢文件进目录，刷新页面即可，不需要重建镜像**
 
+> 📐 详细架构图（含 Mermaid 图与交互式大图）：[`docs/architecture.md`](docs/architecture.md)
+
 ---
 
 ## 一、快速开始（Docker）

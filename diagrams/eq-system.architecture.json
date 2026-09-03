@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "DOVE EQ WEB · 整体架构",
+    "subtitle": "Vue3 耳机 EQ 调音工具 · 前后端分离 + 只读数据卷 (Docker)",
+    "output": "eq-system.html"
+  },
+  "components": [
+    { "id": "browser", "type": "external", "label": "用户浏览器", "sublabel": "Chrome/Edge · localhost:8080", "pos": [40, 40], "size": [150, 64] },
+    { "id": "spa", "type": "frontend", "label": "Vue 3 SPA", "sublabel": "eqEngine + 13 组件", "pos": [40, 140], "size": [150, 64] },
+    { "id": "nginx", "type": "frontend", "label": "nginx", "sublabel": "静态托管 + /api 反代", "pos": [320, 150], "size": [160, 70] },
+    { "id": "server", "type": "backend", "label": "server.js", "sublabel": "Express · 5 个只读接口", "pos": [620, 110], "size": [160, 64] },
+    { "id": "scan", "type": "backend", "label": "scanData.js", "sublabel": "扫描 data/ 生成条目", "pos": [620, 220], "size": [160, 64] },
+    { "id": "curves", "type": "database", "label": "curves/", "sublabel": "频响曲线 CSV + manifest", "pos": [980, 110], "size": [160, 64] },
+    { "id": "presets", "type": "database", "label": "presets/", "sublabel": "EQ 预设 JSON", "pos": [980, 220], "size": [160, 64] },
+    { "id": "device", "type": "external", "label": "耳机设备", "sublabel": "WebHID/WebSerial · 14 VID", "pos": [40, 380], "size": [160, 64] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Frontend 容器 (nginx:80 → 发布 :8080)", "wraps": ["nginx"] },
+    { "kind": "region", "label": "Backend 容器 (node :3000)", "wraps": ["server", "scan"] },
+    { "kind": "region", "label": "data/ 卷 (只读挂载 :ro)", "wraps": ["curves", "presets"] }
+  ],
+  "connections": [
+    { "from": "browser", "to": "nginx", "label": "HTTP :8080", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "from": "spa", "to": "nginx", "label": "/api 请求", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "from": "nginx", "to": "server", "label": "/api 反代", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "from": "server", "to": "scan", "fromSide": "bottom", "toSide": "top" },
+    { "from": "server", "to": "curves", "label": "读 (只读挂载)", "variant": "dashed", "fromSide": "right", "toSide": "left" },
+    { "from": "server", "to": "presets", "label": "读 (只读挂载)", "variant": "dashed", "fromSide": "right", "toSide": "left" },
+    { "from": "spa", "to": "device", "label": "WebHID/WebSerial 直连", "variant": "security", "fromSide": "bottom", "toSide": "top" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "前端", "items": ["Vue 3 SPA + Vite 构建，nginx 静态托管并反代 /api", "核心 eqEngine 引擎 + 13 个 UI 组件"] },
+    { "dot": "emerald", "title": "后端", "items": ["Express 仅 5 个只读接口，每次请求重读磁盘、不缓存", "scanData 扫描 data/ 生成曲线与 EQ 预设条目"] },
+    { "dot": "rose", "title": "数据与设备", "items": ["data/ 以只读卷挂载进后端容器，加数据免重建镜像", "设备 PEQ 经 WebHID/WebSerial 直连（14 个厂商 VID）"] }
+  ]
+}
