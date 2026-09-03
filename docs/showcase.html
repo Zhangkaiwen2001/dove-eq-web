@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DOVE EQ WEB · 展示页</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --bg-soft: #f1f3f7;
+    --card-bg: #ffffff;
+    --text: #0f172a;
+    --text-soft: #64748b;
+    --border: #e2e8f0;
+    --accent: #6366f1;
+    --accent-soft: #eef2ff;
+    --pass: #22c55e;
+    --pass-soft: #dcfce7;
+    --live: #06b6d4;
+    --live-soft: #cffafe;
+    --shadow: 0 1px 3px rgba(15,23,42,.08), 0 8px 24px rgba(15,23,42,.06);
+  }
+  [data-theme="dark"] {
+    --bg: #0b1020;
+    --bg-soft: #11182b;
+    --card-bg: #151d33;
+    --text: #e6ebf5;
+    --text-soft: #93a1bd;
+    --border: #263150;
+    --accent: #818cf8;
+    --accent-soft: #1e2547;
+    --pass: #34d399;
+    --pass-soft: #0f2e22;
+    --live: #22d3ee;
+    --live-soft: #0c2f3a;
+    --shadow: 0 1px 3px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background .25s, color .25s;
+  }
+  code, .mono { font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace; }
+
+  /* Nav */
+  .site-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; backdrop-filter: blur(8px);
+    background: color-mix(in srgb, var(--bg) 85%, transparent); z-index: 50;
+  }
+  .brand { font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--text); }
+  .brand .dot { font-size: 1.3rem; }
+  .nav-menu { display: flex; align-items: center; gap: 1.1rem; }
+  .nav-menu a { color: var(--text-soft); text-decoration: none; font-size: .92rem; transition: color .2s; }
+  .nav-menu a:hover { color: var(--accent); }
+  .theme-btn {
+    border: 1px solid var(--border); background: var(--card-bg); color: var(--text);
+    border-radius: 8px; padding: .35rem .7rem; cursor: pointer; font-size: .85rem;
+  }
+  .theme-btn:hover { border-color: var(--accent); }
+
+  /* Hero */
+  .hero { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem 2.5rem; text-align: center; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; margin: 0 0 1rem; letter-spacing: -.02em; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero p.lead { color: var(--text-soft); font-size: 1.1rem; max-width: 640px; margin: 0 auto 2.2rem; }
+  .metrics { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem; margin-bottom: 2.5rem; }
+  .metric { display: flex; flex-direction: column; align-items: center; }
+  .metric b { font-size: 2.1rem; font-weight: 800; line-height: 1; color: var(--accent); }
+  .metric span { font-size: .82rem; color: var(--text-soft); margin-top: .35rem; }
+
+  /* Tabs */
+  .filter-tabs { display: inline-flex; gap: .4rem; padding: .35rem; background: var(--bg-soft); border-radius: 12px; border: 1px solid var(--border); }
+  .tab {
+    border: none; background: transparent; color: var(--text-soft); cursor: pointer;
+    padding: .5rem 1rem; border-radius: 8px; font-size: .9rem; transition: all .2s;
+  }
+  .tab.active { background: var(--card-bg); color: var(--text); box-shadow: var(--shadow); }
+  .tab:hover:not(.active) { color: var(--text); }
+
+  /* Grid */
+  .gallery-grid {
+    max-width: 1100px; margin: 2.5rem auto; padding: 0 1.5rem;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.4rem;
+  }
+  .card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.4rem; position: relative; box-shadow: var(--shadow);
+    transition: transform .2s, border-color .2s; display: flex; flex-direction: column;
+  }
+  .card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .card-index { position: absolute; top: 1rem; right: 1.2rem; font-size: 2.4rem; font-weight: 800; color: var(--border); line-height: 1; }
+  .card-meta { font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; color: var(--text-soft); margin-bottom: .5rem; }
+  .card h3 { margin: .2rem 0 .7rem; font-size: 1.18rem; }
+  .badges { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .8rem; }
+  .badge { font-size: .72rem; padding: .2rem .55rem; border-radius: 999px; font-weight: 600; }
+  .badge-style { background: var(--accent-soft); color: var(--accent); }
+  .badge-live { background: var(--live-soft); color: var(--live); display: inline-flex; align-items: center; gap: .3rem; }
+  .badge-live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 3px color-mix(in srgb, var(--live) 30%, transparent); }
+  .badge-pass { background: var(--pass-soft); color: var(--pass); }
+  .card-desc { font-size: .9rem; color: var(--text-soft); margin: 0 0 1rem; flex: 1; }
+  .receipt { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .8rem; }
+  .card-actions { display: flex; flex-wrap: wrap; gap: .6rem; font-size: .85rem; }
+  .card-actions a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+  .card-actions a:hover { border-bottom-color: var(--accent); }
+  .hash { font-size: .72rem; color: var(--text-soft); margin-top: .7rem; }
+
+  /* Live architecture embeds */
+  .live-section { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; }
+  .live-section h2 { font-size: 1.5rem; margin-bottom: .3rem; }
+  .live-section .sub { color: var(--text-soft); margin-bottom: 1.5rem; font-size: .95rem; }
+  .embed { margin-bottom: 2rem; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--card-bg); box-shadow: var(--shadow); }
+  .embed .embed-head { display: flex; align-items: center; justify-content: space-between; padding: .8rem 1.1rem; border-bottom: 1px solid var(--border); }
+  .embed .embed-head h3 { margin: 0; font-size: 1rem; }
+  .embed iframe { width: 100%; height: 560px; border: 0; display: block; background: var(--bg); }
+
+  /* Footer */
+  .footer { border-top: 1px solid var(--border); margin-top: 4rem; padding: 2.5rem 1.5rem; max-width: 1100px; margin-left: auto; margin-right: auto; }
+  .footer h2 { font-size: 1.3rem; margin: 0 0 1rem; }
+  .footer ol { color: var(--text-soft); font-size: .92rem; padding-left: 1.2rem; }
+  .footer ol li { margin-bottom: .4rem; }
+  .footer .receipt-line { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .82rem; color: var(--text-soft); background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px; padding: .8rem 1rem; margin: 1rem 0; }
+  .footer .lic { color: var(--text-soft); font-size: .82rem; margin-top: 1.5rem; }
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .metrics { gap: 1.4rem; }
+    .embed iframe { height: 460px; }
+  }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a class="brand" href="./showcase.html"><span class="dot">🕊️</span> DOVE EQ WEB</a>
+  <div class="nav-menu">
+    <a href="architecture.md">架构文档</a>
+    <a href="https://github.com/Zhangkaiwen2001/dove-eq-web" target="_blank" rel="noopener">GitHub</a>
+    <button class="theme-btn" id="themeBtn">🌙 暗色</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>鸽子耳机<em>自由曲线绘制者</em></h1>
+  <p class="lead">基于 Vue 3 + Vite 的耳机 EQ 均衡器调音工具：在频响曲线上实时绘制、拖拽调试参量均衡，支持曲线库导入、EQ 预设管理与设备 PEQ 直连。</p>
+  <div class="metrics">
+    <div class="metric"><b>8</b><span>段参量均衡 PEQ</span></div>
+    <div class="metric"><b>13</b><span>前端组件</span></div>
+    <div class="metric"><b>14</b><span>厂商 VID 直连</span></div>
+    <div class="metric"><b>2</b><span>架构证明</span></div>
+  </div>
+  <div class="filter-tabs" id="tabs">
+    <button class="tab active" data-filter="all">全部</button>
+    <button class="tab" data-filter="arch">架构</button>
+    <button class="tab" data-filter="feat">功能</button>
+    <button class="tab" data-filter="tech">技术</button>
+  </div>
+</header>
+
+<main class="gallery-grid" id="grid">
+  <!-- Architecture: System -->
+  <article class="card" data-cat="arch">
+    <span class="card-index">01</span>
+    <p class="card-meta">Architecture / 6 nodes / live</p>
+    <h3>系统 · 运行时架构</h3>
+    <div class="badges">
+      <span class="badge badge-style">runtime</span>
+      <span class="badge badge-style">read-only API</span>
+      <span class="badge badge-live">Live artifact</span>
+    </div>
+    <p class="card-desc">浏览器 → Frontend 容器(nginx) → /api 反代 → Backend 容器(node) → 只读挂载 data/ 卷；SPA 经 WebHID/WebSerial 直连耳机设备。</p>
+    <div class="receipt">
+      <span class="badge badge-pass">Artifact PASS</span>
+      <span class="badge badge-pass">SHOWCASE · PASS</span>
+    </div>
+    <div class="card-actions">
+      <a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html" target="_blank" rel="noopener">Full artifact ↗</a>
+      <a href="https://github.com/Zhangkaiwen2001/dove-eq-web/blob/main/diagrams/eq-system.architecture.json" target="_blank" rel="noopener">JSON IR ↗</a>
+    </div>
+    <p class="hash mono">SHA-256 · eq-system.architecture.json</p>
+  </article>
+
+  <!-- Architecture: Frontend -->
+  <article class="card" data-cat="arch">
+    <span class="card-index">02</span>
+    <p class="card-meta">Architecture / 5 modules / live</p>
+    <h3>前端内部模块架构</h3>
+    <div class="badges">
+      <span class="badge badge-style">module map</span>
+      <span class="badge badge-style">provide/inject</span>
+      <span class="badge badge-live">Live artifact</span>
+    </div>
+    <p class="card-desc">App.vue provide 引擎单例 → eqEngine.js（数学/曲线库/EQ预设/画布/设备PEQ）+ 13 组件分两层；Vite 构建 → dist → nginx。</p>
+    <div class="receipt">
+      <span class="badge badge-pass">Artifact PASS</span>
+      <span class="badge badge-pass">SHOWCASE · PASS</span>
+    </div>
+    <div class="card-actions">
+      <a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html" target="_blank" rel="noopener">Full artifact ↗</a>
+      <a href="https://github.com/Zhangkaiwen2001/dove-eq-web/blob/main/diagrams/eq-frontend.architecture.json" target="_blank" rel="noopener">JSON IR ↗</a>
+    </div>
+    <p class="hash mono">SHA-256 · eq-frontend.architecture.json</p>
+  </article>
+
+  <!-- Feature cards -->
+  <article class="card" data-cat="feat">
+    <span class="card-index">03</span>
+    <p class="card-meta">Feature / canvas</p>
+    <h3>频响曲线绘制</h3>
+    <div class="badges"><span class="badge badge-style">SVG 画布</span><span class="badge badge-style">拖拽调试</span></div>
+    <p class="card-desc">原生 SVG 画布实时绘制频响曲线，拖拽控制点调节 8 段 PEQ 的频点 / Q / 增益。</p>
+  </article>
+
+  <article class="card" data-cat="feat">
+    <span class="card-index">04</span>
+    <p class="card-meta">Feature / library</p>
+    <h3>曲线库与 EQ 预设</h3>
+    <div class="badges"><span class="badge badge-style">CSV/JSON</span><span class="badge badge-style">免重建</span></div>
+    <p class="card-desc">曲线库导入、EQ 预设管理；加数据只丢文件进 data/ 卷，刷新即生效，无需重建镜像。</p>
+  </article>
+
+  <article class="card" data-cat="feat">
+    <span class="card-index">05</span>
+    <p class="card-meta">Feature / device</p>
+    <h3>设备 PEQ 直连</h3>
+    <div class="badges"><span class="badge badge-style">WebHID</span><span class="badge badge-style">WebSerial</span><span class="badge badge-style">14 VID</span></div>
+    <p class="card-desc">Chrome / Edge 桌面版经 WebHID/WebSerial 直写耳机 PEQ；须 localhost 安全上下文。</p>
+  </article>
+
+  <article class="card" data-cat="feat">
+    <span class="card-index">06</span>
+    <p class="card-meta">Feature / dsp</p>
+    <h3>失真补偿</h3>
+    <div class="badges"><span class="badge badge-style">auto preamp</span></div>
+    <p class="card-desc">正增益较多时一键失真补偿，自动回退总增益，避免削波。</p>
+  </article>
+
+  <article class="card" data-cat="feat">
+    <span class="card-index">07</span>
+    <p class="card-meta">Feature / responsive</p>
+    <h3>多端自适应</h3>
+    <div class="badges"><span class="badge badge-style">手机/平板/电脑</span></div>
+    <p class="card-desc">响应式布局覆盖手机、平板与桌面三端，调音体验一致。</p>
+  </article>
+
+  <!-- Tech -->
+  <article class="card" data-cat="tech">
+    <span class="card-index">08</span>
+    <p class="card-meta">Stack / frontend</p>
+    <h3>前端技术栈</h3>
+    <div class="badges"><span class="badge badge-style">Vue 3</span><span class="badge badge-style">Vite</span><span class="badge badge-style">SVG</span></div>
+    <p class="card-desc">Vue 3 组件化 UI + 自研 eqEngine 单例；Vite 构建产物由 nginx 托管。</p>
+  </article>
+
+  <article class="card" data-cat="tech">
+    <span class="card-index">09</span>
+    <p class="card-meta">Stack / backend</p>
+    <h3>后端与运行</h3>
+    <div class="badges"><span class="badge badge-style">Node</span><span class="badge badge-style">Express</span><span class="badge badge-style">Docker</span></div>
+    <p class="card-desc">Node + Express 提供 5 个只读接口；Docker / docker-compose 两容器分离部署。</p>
+  </article>
+</main>
+
+<section class="live-section">
+  <h2>架构 Live 工件</h2>
+  <p class="sub">以下为 archify 生成的交互式图表，直接内嵌渲染（支持明暗主题切换与 PNG/SVG 导出）。</p>
+
+  <div class="embed">
+    <div class="embed-head"><h3>系统 / 运行时架构</h3><a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html" target="_blank" rel="noopener" style="color:var(--accent);font-size:.85rem;text-decoration:none;">在新标签打开 ↗</a></div>
+    <iframe src="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html" loading="lazy" title="系统架构图"></iframe>
+  </div>
+
+  <div class="embed">
+    <div class="embed-head"><h3>前端内部模块架构</h3><a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html" target="_blank" rel="noopener" style="color:var(--accent);font-size:.85rem;text-decoration:none;">在新标签打开 ↗</a></div>
+    <iframe src="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html" loading="lazy" title="前端架构图"></iframe>
+  </div>
+</section>
+
+<footer class="footer">
+  <h2>展示页与产品同源，不会漂移。</h2>
+  <ol>
+    <li>读取仓库真实结构（frontend / backend / data）作为源真相。</li>
+    <li>用 archify 渲染两张架构图（schema_version 1，SHOWCASE 校验通过）。</li>
+    <li>本页以卡片网格复刻 Proof Lab 风格，live 工件直接内嵌。</li>
+    <li>发布到仓库 main 分支，任何人可复现。</li>
+  </ol>
+  <div class="receipt-line">receipt · 2 architecture artifacts · SHOWCASE PASS · deterministic from source of truth</div>
+  <p class="lic">DOVE EQ WEB · MIT · 由 archify 风格复刻 · <a href="https://github.com/Zhangkaiwen2001/dove-eq-web" target="_blank" rel="noopener">GitHub ↗</a></p>
+</footer>
+
+<script>
+  // Theme toggle
+  const root = document.documentElement;
+  const btn = document.getElementById('themeBtn');
+  const saved = localStorage.getItem('dove-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  function syncBtn() {
+    const dark = root.getAttribute('data-theme') === 'dark';
+    btn.textContent = dark ? '🌙 暗色' : '☀️ 亮色';
+  }
+  syncBtn();
+  btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('dove-theme', next);
+    syncBtn();
+  });
+
+  // Filter tabs
+  const tabs = document.getElementById('tabs');
+  const cards = document.querySelectorAll('#grid .card');
+  tabs.addEventListener('click', (e) => {
+    const t = e.target.closest('.tab');
+    if (!t) return;
+    tabs.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    const f = t.dataset.filter;
+    cards.forEach(c => {
+      c.style.display = (f === 'all' || c.dataset.cat === f) ? '' : 'none';
+    });
+  });
+</script>
+</body>
+</html>
