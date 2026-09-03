@@ -11,6 +11,8 @@
 
 > 💡 **关于图表查看**：GitHub 的 `blob` 视图出于安全**不会执行仓库内的 HTML/JS**，点开 `.html` 只会显示源码而非渲染图。因此上面的「交互预览」链接走 [raw.githack.com](https://raw.githack.com) 直接渲染完整交互版（主题切换、导出均可）。本文档中的 **Mermaid 图在 GitHub 上原生内联渲染**，无需点击即可看架构；`.architecture.json` 为可改后重渲染的源规格（在 blob 视图查看源码）。
 
+> 🖼️ **交互式画廊（卡片 + 实时图）**：[项目展示页 index.html](https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/index.html) —— 本页是架构技术细节，想直接看可视化大图与功能卡片请走展示页。
+
 ---
 
 ## 1. 概览

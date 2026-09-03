@@ -3,19 +3,14 @@
 基于 **Vue 3 + Vite** 的耳机 EQ 均衡器调音工具，支持手机 / 平板 / 电脑三端自适应布局。
 可在频响曲线上实时绘制、拖拽调试 8 段参量均衡（PEQ），并支持曲线库导入、EQ 预设管理、设备 PEQ 直连与失真补偿。
 
+> 🖼️ **项目展示页**：[index.html（交互式架构图 + 功能画廊）](https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/index.html) —— 一张可切换明暗主题、导出 PNG/SVG 的实时架构图，加功能与技术的卡片画廊。
+
 ## 架构
 
-前后端分离，两个容器：
+前后端分离的单仓（monorepo）：`frontend`（Vue 3 SPA，nginx 托管）将 `/api` 反代到 `backend`（Node + Express 只读 API），`data/` 以只读卷挂载、加数据免重建镜像；SPA 经 WebHID / WebSerial 直连耳机设备。
 
-```
-浏览器 → localhost:8080 → frontend (nginx:80) → /api → backend (node:3000) → data/ 目录
-```
-
-- **frontend**：托管前端构建产物，并把 `/api` 反代到后端
-- **backend**：只读 API，扫描 `data/` 目录提供曲线库与 EQ 预设
-- **data/**：以只读卷挂载进后端。**加曲线只需丢文件进目录，刷新页面即可，不需要重建镜像**
-
-> 📐 详细架构图（含 Mermaid 图与交互式大图）：[`docs/architecture.md`](docs/architecture.md)
+- 🖼️ **看交互式架构图**：[项目展示页 index.html](https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/index.html)
+- 📐 架构细节、Mermaid 图与数据流：见 [docs/architecture.md](docs/architecture.md)
 
 ---
 

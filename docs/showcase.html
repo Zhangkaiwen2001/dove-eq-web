@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="zh-CN" data-theme="dark" data-page-node-id="GiGOCe9lcG0G2WHob02T6U">
+<head data-page-node-id="tWqTzUGH84gAXpdv2A21hb">
+<meta charset="UTF-8" data-page-node-id="FsVoPkyRDpKIEmsPMcXX4G" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="hhoNmDrkZMI7WBipSjl48S" />
 <title>DOVE EQ WEB · 展示页</title>
 <style>
   :root {
@@ -109,7 +109,6 @@
   .card-actions { display: flex; flex-wrap: wrap; gap: .6rem; font-size: .85rem; }
   .card-actions a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
   .card-actions a:hover { border-bottom-color: var(--accent); }
-  .hash { font-size: .72rem; color: var(--text-soft); margin-top: .7rem; }
 
   /* Live architecture embeds */
   .live-section { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; }
@@ -135,162 +134,160 @@
   }
 </style>
 </head>
-<body>
-<nav class="site-nav">
-  <a class="brand" href="./showcase.html"><span class="dot">🕊️</span> DOVE EQ WEB</a>
-  <div class="nav-menu">
-    <a href="architecture.md">架构文档</a>
-    <a href="https://github.com/Zhangkaiwen2001/dove-eq-web" target="_blank" rel="noopener">GitHub</a>
-    <button class="theme-btn" id="themeBtn">🌙 暗色</button>
+<body data-page-node-id="BabOIQfgu8JLmass8PGZgC">
+<nav class="site-nav" data-page-node-id="SHEsktrthKHMatOEmsQEtK">
+  <a class="brand" href="./showcase.html" data-page-node-id="idzinSqAAj8d9dPBNmqUQS"><span class="dot" data-page-node-id="fCab3GmD5xnDErG2TTp6gQ">🕊️</span> DOVE EQ WEB</a>
+  <div class="nav-menu" data-page-node-id="owdWadMOClCaN313Tqs0fa">
+    <a href="architecture.md" data-page-node-id="TbIWwPp3tHu9o0k4FDSIyo">架构文档</a>
+    <a href="https://github.com/Zhangkaiwen2001/dove-eq-web" target="_blank" rel="noopener" data-page-node-id="aQsrcXnczWNXDUAUlMRsCE">GitHub</a>
+    <button class="theme-btn" id="themeBtn" data-page-node-id="MPabLasvftObGwpKTSdAsL">🌙 暗色</button>
   </div>
 </nav>
 
-<header class="hero">
-  <h1>鸽子耳机<em>自由曲线绘制者</em></h1>
-  <p class="lead">基于 Vue 3 + Vite 的耳机 EQ 均衡器调音工具：在频响曲线上实时绘制、拖拽调试参量均衡，支持曲线库导入、EQ 预设管理与设备 PEQ 直连。</p>
-  <div class="metrics">
-    <div class="metric"><b>8</b><span>段参量均衡 PEQ</span></div>
-    <div class="metric"><b>13</b><span>前端组件</span></div>
-    <div class="metric"><b>14</b><span>厂商 VID 直连</span></div>
-    <div class="metric"><b>2</b><span>架构证明</span></div>
+<header class="hero" data-page-node-id="FdE8lsb6gymwDpDwHBcbmw">
+  <h1 data-page-node-id="vGkph2Po5IP82HqJEnfPjO">鸽子耳机<em data-page-node-id="ociGtvoj4BnpGsODCCQa3C">自由曲线绘制者</em></h1>
+  <p class="lead" data-page-node-id="0TNli0sLMHoEeivSqIbsvJ">基于 Vue 3 + Vite 的耳机 EQ 均衡器调音工具：在频响曲线上实时绘制、拖拽调试参量均衡，支持曲线库导入、EQ 预设管理与设备 PEQ 直连。</p>
+  <div class="metrics" data-page-node-id="9MciwJCugwqmsdJ6iyJDsp">
+    <div class="metric" data-page-node-id="8RcaRR2eh4gpWizAC1ALmw"><b data-page-node-id="3uOcDycLeKyN60daHFSTbZ">8</b><span data-page-node-id="PwoueKaeVW7pUAwJw7VFFf">段参量均衡 PEQ</span></div>
+    <div class="metric" data-page-node-id="VUVoRu1Vf4vsdBiPzBE25w"><b data-page-node-id="FqNBk5hzUkCaHseJpk9602">13</b><span data-page-node-id="hOBKBXtqb3du89X91AfRAz">前端组件</span></div>
+    <div class="metric" data-page-node-id="5A9YsjxI65EXXCGkoQNGlt"><b data-page-node-id="5Va1zkJFJUSzADQqEWvqUo">14</b><span data-page-node-id="oAjhxkDTwCgKaQQhRycZ9Y">厂商 VID 直连</span></div>
+    <div class="metric" data-page-node-id="4zk06L9poPHpVwRLyJqLv8"><b data-page-node-id="nwEREFdzkErTqLazv49vPO">2</b><span data-page-node-id="QqXR2JXnAcQ3QpcwAVgukL">架构证明</span></div>
   </div>
-  <div class="filter-tabs" id="tabs">
-    <button class="tab active" data-filter="all">全部</button>
-    <button class="tab" data-filter="arch">架构</button>
-    <button class="tab" data-filter="feat">功能</button>
-    <button class="tab" data-filter="tech">技术</button>
+  <div class="filter-tabs" id="tabs" data-page-node-id="9Jin8KBiT7v3yHNHTK4fCl">
+    <button class="tab active" data-filter="all" data-page-node-id="9hwPMtPryXXMhLr0NKr0Bs">全部</button>
+    <button class="tab" data-filter="arch" data-page-node-id="qajoNiFcp6Y5vgApd2VEii">架构</button>
+    <button class="tab" data-filter="feat" data-page-node-id="sPvNKrrvOdvbzZRtsr5QAB">功能</button>
+    <button class="tab" data-filter="tech" data-page-node-id="2p5cUizF8SGHSiBOO26dgC">技术</button>
   </div>
 </header>
 
-<main class="gallery-grid" id="grid">
+<main class="gallery-grid" id="grid" data-page-node-id="etY2DBzT80Gl9liTemGOeS">
   <!-- Architecture: System -->
-  <article class="card" data-cat="arch">
-    <span class="card-index">01</span>
-    <p class="card-meta">Architecture / 6 nodes / live</p>
-    <h3>系统 · 运行时架构</h3>
-    <div class="badges">
-      <span class="badge badge-style">runtime</span>
-      <span class="badge badge-style">read-only API</span>
-      <span class="badge badge-live">Live artifact</span>
+  <article class="card" data-cat="arch" data-page-node-id="lBzoNGloTZ3GoNRdPuJ6yQ">
+    <span class="card-index" data-page-node-id="gCK4Gqd8B8pVcDqQCNS8ew">01</span>
+    <p class="card-meta" data-page-node-id="GnM9mUGXRKKC3vrRPhkN8A">Architecture / 6 nodes / live</p>
+    <h3 data-page-node-id="rIi2sBQDrGINkW9bkA5rtO">系统 · 运行时架构</h3>
+    <div class="badges" data-page-node-id="9AA7FUmI0lviD0dWO7F5pl">
+      <span class="badge badge-style" data-page-node-id="OhE8EUwmaCvUAP6q7dXaGA">runtime</span>
+      <span class="badge badge-style" data-page-node-id="U8XtFtD00OKG87EB2NvTcf">read-only API</span>
+      <span class="badge badge-live" data-page-node-id="8f4PWC5YFeIuUsWGZwCl2D">Live artifact</span>
     </div>
-    <p class="card-desc">浏览器 → Frontend 容器(nginx) → /api 反代 → Backend 容器(node) → 只读挂载 data/ 卷；SPA 经 WebHID/WebSerial 直连耳机设备。</p>
-    <div class="receipt">
-      <span class="badge badge-pass">Artifact PASS</span>
-      <span class="badge badge-pass">SHOWCASE · PASS</span>
+    <p class="card-desc" data-page-node-id="YQaBZ0ljxMpdHbXneHWhoa">浏览器 → Frontend 容器(nginx) → /api 反代 → Backend 容器(node) → 只读挂载 data/ 卷；SPA 经 WebHID/WebSerial 直连耳机设备。</p>
+    <div class="receipt" data-page-node-id="itgmD8EA4RxyCRWMkvdEQ8">
+      <span class="badge badge-pass" data-page-node-id="1EkpLDcpfXeLncOwQx1AHE">Artifact PASS</span>
+      <span class="badge badge-pass" data-page-node-id="e6e3xJ6KphNXadvQM0WM45">SHOWCASE · PASS</span>
     </div>
-    <div class="card-actions">
-      <a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html" target="_blank" rel="noopener">Full artifact ↗</a>
-      <a href="https://github.com/Zhangkaiwen2001/dove-eq-web/blob/main/diagrams/eq-system.architecture.json" target="_blank" rel="noopener">JSON IR ↗</a>
+    <div class="card-actions" data-page-node-id="HUdGQIDda7IsWnKNtddRc5">
+      <a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html" target="_blank" rel="noopener" data-page-node-id="UAbEWIxL4OLfELao9hy5Ln">Full artifact ↗</a>
+      <a href="https://github.com/Zhangkaiwen2001/dove-eq-web/blob/main/diagrams/eq-system.architecture.json" target="_blank" rel="noopener" data-page-node-id="PMXXE9BmBzwIiLTp76YkiO">JSON IR ↗</a>
     </div>
-    <p class="hash mono">SHA-256 · eq-system.architecture.json</p>
   </article>
 
   <!-- Architecture: Frontend -->
-  <article class="card" data-cat="arch">
-    <span class="card-index">02</span>
-    <p class="card-meta">Architecture / 5 modules / live</p>
-    <h3>前端内部模块架构</h3>
-    <div class="badges">
-      <span class="badge badge-style">module map</span>
-      <span class="badge badge-style">provide/inject</span>
-      <span class="badge badge-live">Live artifact</span>
+  <article class="card" data-cat="arch" data-page-node-id="CWqwUUeItiC46kSzwcerBj">
+    <span class="card-index" data-page-node-id="g3uOSa5OyZr3a0UJYAaoJD">02</span>
+    <p class="card-meta" data-page-node-id="1DFtWLGszJGAztX7pqP3zg">Architecture / 5 modules / live</p>
+    <h3 data-page-node-id="vyXCe7Q6UpUqoMxLqF3Qxt">前端内部模块架构</h3>
+    <div class="badges" data-page-node-id="BHcRMEx44pEOjE4mwJMwlV">
+      <span class="badge badge-style" data-page-node-id="h8GSsSOE8J0rbyncdRTvYo">module map</span>
+      <span class="badge badge-style" data-page-node-id="tQ6irlyAFsl6shSIwFdpz6">provide/inject</span>
+      <span class="badge badge-live" data-page-node-id="YxGBUbdf42v0BAJCUxP3m1">Live artifact</span>
     </div>
-    <p class="card-desc">App.vue provide 引擎单例 → eqEngine.js（数学/曲线库/EQ预设/画布/设备PEQ）+ 13 组件分两层；Vite 构建 → dist → nginx。</p>
-    <div class="receipt">
-      <span class="badge badge-pass">Artifact PASS</span>
-      <span class="badge badge-pass">SHOWCASE · PASS</span>
+    <p class="card-desc" data-page-node-id="xCtQmV4nmxeQ1AsZIHBPWQ">App.vue provide 引擎单例 → eqEngine.js（数学/曲线库/EQ预设/画布/设备PEQ）+ 13 组件分两层；Vite 构建 → dist → nginx。</p>
+    <div class="receipt" data-page-node-id="b1BcEDkAeSM3CWwXoGxhJM">
+      <span class="badge badge-pass" data-page-node-id="crh3K9ec9z8HU1hKFwd253">Artifact PASS</span>
+      <span class="badge badge-pass" data-page-node-id="gw3gCGv9fwYGO7nDJPuE1u">SHOWCASE · PASS</span>
     </div>
-    <div class="card-actions">
-      <a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html" target="_blank" rel="noopener">Full artifact ↗</a>
-      <a href="https://github.com/Zhangkaiwen2001/dove-eq-web/blob/main/diagrams/eq-frontend.architecture.json" target="_blank" rel="noopener">JSON IR ↗</a>
+    <div class="card-actions" data-page-node-id="jkbiBOBirMP1IAqoKjRLYM">
+      <a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html" target="_blank" rel="noopener" data-page-node-id="oLaZoULnACA8kGMYzwAgTB">Full artifact ↗</a>
+      <a href="https://github.com/Zhangkaiwen2001/dove-eq-web/blob/main/diagrams/eq-frontend.architecture.json" target="_blank" rel="noopener" data-page-node-id="xReZjLlCFO3EJPFHUxwIa8">JSON IR ↗</a>
     </div>
-    <p class="hash mono">SHA-256 · eq-frontend.architecture.json</p>
   </article>
 
   <!-- Feature cards -->
-  <article class="card" data-cat="feat">
-    <span class="card-index">03</span>
-    <p class="card-meta">Feature / canvas</p>
-    <h3>频响曲线绘制</h3>
-    <div class="badges"><span class="badge badge-style">SVG 画布</span><span class="badge badge-style">拖拽调试</span></div>
-    <p class="card-desc">原生 SVG 画布实时绘制频响曲线，拖拽控制点调节 8 段 PEQ 的频点 / Q / 增益。</p>
+  <article class="card" data-cat="feat" data-page-node-id="5jWdBVZowGdPE7kmAbJr7s">
+    <span class="card-index" data-page-node-id="uAPRjQIORbsp4J9eB9I8pP">03</span>
+    <p class="card-meta" data-page-node-id="XV7f6fMC2EQsnFlmh4Y3ao">Feature / canvas</p>
+    <h3 data-page-node-id="frnxy73VyfJWIkiGkjcKF6">频响曲线绘制</h3>
+    <div class="badges" data-page-node-id="fo1cDwcUcFxrUEtlSj7qub"><span class="badge badge-style" data-page-node-id="RtXNMFvHsc7zg3eTlL2Unj">SVG 画布</span><span class="badge badge-style" data-page-node-id="t68ssnIJsvnKK1IBxB6mbY">拖拽调试</span></div>
+    <p class="card-desc" data-page-node-id="LhSTtCkOgYn3I5FF7zOGPA">原生 SVG 画布实时绘制频响曲线，拖拽控制点调节 8 段 PEQ 的频点 / Q / 增益。</p>
   </article>
 
-  <article class="card" data-cat="feat">
-    <span class="card-index">04</span>
-    <p class="card-meta">Feature / library</p>
-    <h3>曲线库与 EQ 预设</h3>
-    <div class="badges"><span class="badge badge-style">CSV/JSON</span><span class="badge badge-style">免重建</span></div>
-    <p class="card-desc">曲线库导入、EQ 预设管理；加数据只丢文件进 data/ 卷，刷新即生效，无需重建镜像。</p>
+  <article class="card" data-cat="feat" data-page-node-id="kEnyIBvh0nAzHYAgEgXER3">
+    <span class="card-index" data-page-node-id="pPcmvGm3uSXSAaSbRlwK1o">04</span>
+    <p class="card-meta" data-page-node-id="XBiGUIEB1qgNyRvZXZwpCQ">Feature / library</p>
+    <h3 data-page-node-id="hMAGzKkHE1LYaeqdVThIpi">曲线库与 EQ 预设</h3>
+    <div class="badges" data-page-node-id="XYRdaEO3pnbjqPQrcPzZsg"><span class="badge badge-style" data-page-node-id="3xoBwvaKRGBbkO114FQPjd">CSV/JSON</span><span class="badge badge-style" data-page-node-id="kyN7urAUAvppImLWYEUcGh">免重建</span></div>
+    <p class="card-desc" data-page-node-id="KvwoyyTN9xfozmh65S2PD5">曲线库导入、EQ 预设管理；加数据只丢文件进 data/ 卷，刷新即生效，无需重建镜像。</p>
   </article>
 
-  <article class="card" data-cat="feat">
-    <span class="card-index">05</span>
-    <p class="card-meta">Feature / device</p>
-    <h3>设备 PEQ 直连</h3>
-    <div class="badges"><span class="badge badge-style">WebHID</span><span class="badge badge-style">WebSerial</span><span class="badge badge-style">14 VID</span></div>
-    <p class="card-desc">Chrome / Edge 桌面版经 WebHID/WebSerial 直写耳机 PEQ；须 localhost 安全上下文。</p>
+  <article class="card" data-cat="feat" data-page-node-id="5s7MXS1WcyD0vpMip8mX5d">
+    <span class="card-index" data-page-node-id="iAd72qXHUfBw6VPSvzF7Ey">05</span>
+    <p class="card-meta" data-page-node-id="RpnGulR05PSrDfhw6pTBjv">Feature / device</p>
+    <h3 data-page-node-id="WY0n3lkPMi8piNaqDoG8lT">设备 PEQ 直连</h3>
+    <div class="badges" data-page-node-id="qRzjEfOWxBPtc1Me0JkVEi"><span class="badge badge-style" data-page-node-id="UTkH2pM1tSRQDGAA118igf">WebHID</span><span class="badge badge-style" data-page-node-id="huZNbUsvQ5aedhEHMGZJWP">WebSerial</span><span class="badge badge-style" data-page-node-id="djDaznmLOyiGTCyw7HzpCv">14 VID</span></div>
+    <p class="card-desc" data-page-node-id="4hiLAzsfgr2MNRglIGHl3Z">Chrome / Edge 桌面版经 WebHID/WebSerial 直写耳机 PEQ；须 localhost 安全上下文。</p>
   </article>
 
-  <article class="card" data-cat="feat">
-    <span class="card-index">06</span>
-    <p class="card-meta">Feature / dsp</p>
-    <h3>失真补偿</h3>
-    <div class="badges"><span class="badge badge-style">auto preamp</span></div>
-    <p class="card-desc">正增益较多时一键失真补偿，自动回退总增益，避免削波。</p>
+  <article class="card" data-cat="feat" data-page-node-id="rf3VdS46Rpv8UxedKBviry">
+    <span class="card-index" data-page-node-id="P8YK4hE7CvrWS5AnSlSonB">06</span>
+    <p class="card-meta" data-page-node-id="8gfTwDCS0DdxAVstnPoZ4y">Feature / dsp</p>
+    <h3 data-page-node-id="lBpYBwHrzw455HdIsRAvHo">失真补偿</h3>
+    <div class="badges" data-page-node-id="DeJtbbhasPDqrLcHIsBFCS"><span class="badge badge-style" data-page-node-id="lFsyursij05YCCsB3ETCFE">auto preamp</span></div>
+    <p class="card-desc" data-page-node-id="KFoxbgARxelrBFkChRGnyj">正增益较多时一键失真补偿，自动回退总增益，避免削波。</p>
   </article>
 
-  <article class="card" data-cat="feat">
-    <span class="card-index">07</span>
-    <p class="card-meta">Feature / responsive</p>
-    <h3>多端自适应</h3>
-    <div class="badges"><span class="badge badge-style">手机/平板/电脑</span></div>
-    <p class="card-desc">响应式布局覆盖手机、平板与桌面三端，调音体验一致。</p>
+  <article class="card" data-cat="feat" data-page-node-id="hTCcQOvSOHt6MAvnF7mBhl">
+    <span class="card-index" data-page-node-id="PVM2lIwoYQFBMO5YCCF9go">07</span>
+    <p class="card-meta" data-page-node-id="SW081de4dhCR9RrYCnusn1">Feature / responsive</p>
+    <h3 data-page-node-id="dM9BoaXguR54d4P8xNiLXB">多端自适应</h3>
+    <div class="badges" data-page-node-id="ApkIuxnKCPAXJaacjGWKG1"><span class="badge badge-style" data-page-node-id="dzHBMceO1dxCisPAo9zhBm">手机/平板/电脑</span></div>
+    <p class="card-desc" data-page-node-id="k6uVEaqmviwGtJBv5W85Ta">响应式布局覆盖手机、平板与桌面三端，调音体验一致。</p>
   </article>
 
   <!-- Tech -->
-  <article class="card" data-cat="tech">
-    <span class="card-index">08</span>
-    <p class="card-meta">Stack / frontend</p>
-    <h3>前端技术栈</h3>
-    <div class="badges"><span class="badge badge-style">Vue 3</span><span class="badge badge-style">Vite</span><span class="badge badge-style">SVG</span></div>
-    <p class="card-desc">Vue 3 组件化 UI + 自研 eqEngine 单例；Vite 构建产物由 nginx 托管。</p>
+  <article class="card" data-cat="tech" data-page-node-id="mzm8gwik8qqvwlcLWsPG1v">
+    <span class="card-index" data-page-node-id="BwtVzce2iaBdikwp6qJQYg">08</span>
+    <p class="card-meta" data-page-node-id="7CbB5SHLOONSEt9oXOO1wi">Stack / frontend</p>
+    <h3 data-page-node-id="fk4x9tXkyAj4VkktOjSnpA">前端技术栈</h3>
+    <div class="badges" data-page-node-id="szFMiJvl9HwpAXLjovB7Az"><span class="badge badge-style" data-page-node-id="8AF7UY6gdhDDd745UuJTDH">Vue 3</span><span class="badge badge-style" data-page-node-id="Jx1ahtS7x5V08BCpgbMDwr">Vite</span><span class="badge badge-style" data-page-node-id="cHFOaBHZvzqEtn1r3MG0LN">SVG</span></div>
+    <p class="card-desc" data-page-node-id="kLzfPVqzNAAP4cFf70krNM">Vue 3 组件化 UI + 自研 eqEngine 单例；Vite 构建产物由 nginx 托管。</p>
   </article>
 
-  <article class="card" data-cat="tech">
-    <span class="card-index">09</span>
-    <p class="card-meta">Stack / backend</p>
-    <h3>后端与运行</h3>
-    <div class="badges"><span class="badge badge-style">Node</span><span class="badge badge-style">Express</span><span class="badge badge-style">Docker</span></div>
-    <p class="card-desc">Node + Express 提供 5 个只读接口；Docker / docker-compose 两容器分离部署。</p>
+  <article class="card" data-cat="tech" data-page-node-id="mU3iAa6bbO9wXcQahHCbru">
+    <span class="card-index" data-page-node-id="QzJNH113MGO9U6KUHp76yX">09</span>
+    <p class="card-meta" data-page-node-id="oUp5adto8jm0EFBsQ5UfI8">Stack / backend</p>
+    <h3 data-page-node-id="lwVt6M9PTRjDrUjtynjcEA">后端与运行</h3>
+    <div class="badges" data-page-node-id="d1JzS8tJfbleqj7YVpAAMk"><span class="badge badge-style" data-page-node-id="2CispSsaa3cOmC0B5eMTTR">Node</span><span class="badge badge-style" data-page-node-id="ChkLsEvKBnYWb0PeQJTi6X">Express</span><span class="badge badge-style" data-page-node-id="0529gQgo7TopgIpDzDHWDz">Docker</span></div>
+    <p class="card-desc" data-page-node-id="482nRAEbIAkmbNDZKWH4FL">Node + Express 提供 5 个只读接口；Docker / docker-compose 两容器分离部署。</p>
   </article>
 </main>
 
-<section class="live-section">
-  <h2>架构 Live 工件</h2>
-  <p class="sub">以下为 archify 生成的交互式图表，直接内嵌渲染（支持明暗主题切换与 PNG/SVG 导出）。</p>
+<section class="live-section" data-page-node-id="6U6NRCo6eZmu4eyr3jElMv">
+  <h2 data-page-node-id="oQ8lZHrrmFH8KOPJw7QPB9">架构 Live 工件</h2>
+  <p class="sub" data-page-node-id="htAgkD6ddQ9aea7lQYTd4x">以下为 archify 生成的交互式图表，直接内嵌渲染（支持明暗主题切换与 PNG/SVG 导出）。</p>
 
-  <div class="embed">
-    <div class="embed-head"><h3>系统 / 运行时架构</h3><a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html" target="_blank" rel="noopener" style="color:var(--accent);font-size:.85rem;text-decoration:none;">在新标签打开 ↗</a></div>
-    <iframe src="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html" loading="lazy" title="系统架构图"></iframe>
+  <div class="embed" data-page-node-id="s4pNya6XXCIahF9VZaWEk4">
+    <div class="embed-head" data-page-node-id="fihrwlzZKUrH1bMjM1ULow"><h3 data-page-node-id="6xiP8YYvcfyY73kFyMvcHH">系统 / 运行时架构</h3><a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html" target="_blank" rel="noopener" style="color:var(--accent);font-size:.85rem;text-decoration:none;" data-page-node-id="WnyNMp5iAVuDZwMLJcsGlD">在新标签打开 ↗</a></div>
+    <iframe src="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html" loading="lazy" title="系统架构图" data-page-node-id="ePiqrzaED2r8yjVBzRTOW7"></iframe>
   </div>
 
-  <div class="embed">
-    <div class="embed-head"><h3>前端内部模块架构</h3><a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html" target="_blank" rel="noopener" style="color:var(--accent);font-size:.85rem;text-decoration:none;">在新标签打开 ↗</a></div>
-    <iframe src="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html" loading="lazy" title="前端架构图"></iframe>
+  <div class="embed" data-page-node-id="Y6xoQNjs9bF6MSZ3Pm5Wq8">
+    <div class="embed-head" data-page-node-id="G7PfYViGTvWNoMNefSU2tK"><h3 data-page-node-id="5PDqCpc0neY3iegqO6On0R">前端内部模块架构</h3><a href="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html" target="_blank" rel="noopener" style="color:var(--accent);font-size:.85rem;text-decoration:none;" data-page-node-id="cxxwUgLiCyjw6VTTphkhge">在新标签打开 ↗</a></div>
+    <iframe src="https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html" loading="lazy" title="前端架构图" data-page-node-id="OmC7isqoOvKJykkXG2o0NC"></iframe>
   </div>
 </section>
 
-<footer class="footer">
-  <h2>展示页与产品同源，不会漂移。</h2>
-  <ol>
-    <li>读取仓库真实结构（frontend / backend / data）作为源真相。</li>
-    <li>用 archify 渲染两张架构图（schema_version 1，SHOWCASE 校验通过）。</li>
-    <li>本页以卡片网格复刻 Proof Lab 风格，live 工件直接内嵌。</li>
-    <li>发布到仓库 main 分支，任何人可复现。</li>
+<footer class="footer" data-page-node-id="wjFTFFfC8BEFxuiRi1O6tV">
+  <h2 data-page-node-id="AT7Erc2c3SnNl7XnC87FPt">展示页与产品同源，不会漂移。</h2>
+  <ol data-page-node-id="utit6n4ebHxDs20H9GkpBf">
+    <li data-page-node-id="sHFiQE8JDrjrChLlJ1AwbE">读取仓库真实结构（frontend / backend / data）作为源真相。</li>
+    <li data-page-node-id="v5GemS2inmBy8KJRZ5rPKu">用 archify 渲染两张架构图（schema_version 1，SHOWCASE 校验通过）。</li>
+    <li data-page-node-id="aZ1oVWEn7h3joWtTPlG74A">本页以卡片网格复刻 Proof Lab 风格，live 工件直接内嵌。</li>
+    <li data-page-node-id="rVKePt3LGy7zelIZHIU8wF">发布到仓库 main 分支，任何人可复现。</li>
   </ol>
-  <div class="receipt-line">receipt · 2 architecture artifacts · SHOWCASE PASS · deterministic from source of truth</div>
-  <p class="lic">DOVE EQ WEB · MIT · 由 archify 风格复刻 · <a href="https://github.com/Zhangkaiwen2001/dove-eq-web" target="_blank" rel="noopener">GitHub ↗</a></p>
+  <div class="receipt-line" data-page-node-id="h4wLOXGEv5VwHCeXNllS3r">receipt · 2 architecture artifacts · SHOWCASE PASS · deterministic from source of truth</div>
+  <p class="lic" data-page-node-id="dOeNOEybKGoEreI8BOHWDF">DOVE EQ WEB · MIT · 由 archify 风格复刻 · <a href="https://github.com/Zhangkaiwen2001/dove-eq-web" target="_blank" rel="noopener" data-page-node-id="znwcUiHv92KREiDhvvAxXO">GitHub ↗</a></p>
 </footer>
 
 <script>
