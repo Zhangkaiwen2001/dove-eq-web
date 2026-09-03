@@ -4,10 +4,12 @@
 
 本文档对应交互式大图：
 
-- 系统 / 运行时架构：[`diagrams/eq-system.html`](diagrams/eq-system.html)
-- 前端内部模块架构：[`diagrams/eq-frontend.html`](diagrams/eq-frontend.html)
+- 系统 / 运行时架构：[eq-system.html（交互预览）](https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html)
+- 前端内部模块架构：[eq-frontend.html（交互预览）](https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html)
 
 > 两类图均带明暗主题切换，可一键导出 PNG / JPEG / WebP / SVG。
+
+> 💡 **关于图表查看**：GitHub 的 `blob` 视图出于安全**不会执行仓库内的 HTML/JS**，点开 `.html` 只会显示源码而非渲染图。因此上面的「交互预览」链接走 [raw.githack.com](https://raw.githack.com) 直接渲染完整交互版（主题切换、导出均可）。本文档中的 **Mermaid 图在 GitHub 上原生内联渲染**，无需点击即可看架构；`.architecture.json` 为可改后重渲染的源规格（在 blob 视图查看源码）。
 
 ---
 
@@ -64,7 +66,7 @@ flowchart TB
     Server -->|"只读挂载"| DATA
 ```
 
-> 📎 交互式大图：[`diagrams/eq-system.html`](diagrams/eq-system.html)
+> 📎 交互式大图：[eq-system.html（交互预览）](https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html)
 
 **请求链与数据流向**
 
@@ -118,7 +120,7 @@ flowchart TB
     Panel -->|"调用"| Vendor
 ```
 
-> 📎 交互式大图：[`diagrams/eq-frontend.html`](diagrams/eq-frontend.html)
+> 📎 交互式大图：[eq-frontend.html（交互预览）](https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html)
 
 **模块与依赖**
 
@@ -155,10 +157,10 @@ flowchart TB
 
 | 文件 | 说明 |
 |------|------|
-| [`diagrams/eq-system.html`](diagrams/eq-system.html) | 系统 / 运行时架构交互图 |
-| [`diagrams/eq-system.architecture.json`](diagrams/eq-system.architecture.json) | 上述图的源规格 |
-| [`diagrams/eq-frontend.html`](diagrams/eq-frontend.html) | 前端内部模块架构交互图 |
-| [`diagrams/eq-frontend.architecture.json`](diagrams/eq-frontend.architecture.json) | 上述图的源规格 |
+| [eq-system.html（交互预览）](https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-system.html) | 系统 / 运行时架构交互图 |
+| [eq-system.architecture.json](../diagrams/eq-system.architecture.json) | 上述图的源规格 |
+| [eq-frontend.html（交互预览）](https://raw.githack.com/Zhangkaiwen2001/dove-eq-web/main/diagrams/eq-frontend.html) | 前端内部模块架构交互图 |
+| [eq-frontend.architecture.json](../diagrams/eq-frontend.architecture.json) | 上述图的源规格 |
 
 ---
 
